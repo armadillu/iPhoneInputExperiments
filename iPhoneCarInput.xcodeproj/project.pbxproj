@@ -19,7 +19,6 @@
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BB16EDCB0F2B368400518274 /* ofGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB16E9A90F2B1E6900518274 /* ofGraphics.cpp */; };
 		BB16F3AD0F2B73B000518274 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB16F3A80F2B73B000518274 /* main.cpp */; };
-		BB3F14940F4C6DAB00A33527 /* images in Resources */ = {isa = PBXBuildFile; fileRef = BB3F148C0F4C6DAB00A33527 /* images */; };
 		BB4B3E4D0F7AFE100030C0C6 /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E1A0F7AFE100030C0C6 /* EAGLView.mm */; };
 		BB4B3E4E0F7AFE100030C0C6 /* iPhoneAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E1C0F7AFE100030C0C6 /* iPhoneAppDelegate.mm */; };
 		BB4B3E4F0F7AFE100030C0C6 /* iPhoneGlobals.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E1E0F7AFE100030C0C6 /* iPhoneGlobals.mm */; };
@@ -103,7 +102,6 @@
 		BB16EBD80F2B2AB500518274 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BB16F3A80F2B73B000518274 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BB16F3AA0F2B73B000518274 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		BB3F148C0F4C6DAB00A33527 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		BB4B3DE40F7AFE100030C0C6 /* changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog.txt; sourceTree = "<group>"; };
 		BB4B3E160F7AFE100030C0C6 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BB4B3E170F7AFE100030C0C6 /* ofxiPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxiPhone.h; sourceTree = "<group>"; };
@@ -516,7 +514,6 @@
 		BBD1C2750F39143F007FCFB3 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				BB3F148C0F4C6DAB00A33527 /* images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				BBD1C2770F39143F007FCFB3 /* Icon.png */,
 				BBD1C2760F39143F007FCFB3 /* Default.png */,
@@ -762,7 +759,6 @@
 			files = (
 				BBD1C2780F39143F007FCFB3 /* Default.png in Resources */,
 				BBD1C2790F39143F007FCFB3 /* Icon.png in Resources */,
-				BB3F14940F4C6DAB00A33527 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

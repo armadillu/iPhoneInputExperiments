@@ -11,7 +11,7 @@ ofPoint convertCoordinates(float x, float y){
 //--------------------------------------------------------------
 void testApp::setup(){	
 	
-	ofBackground(50, 50, 50);
+	ofBackground(20, 20, 20);
 	ofSetBackgroundAuto(true);
 	glEnableClientState( GL_VERTEX_ARRAY );  // this should be in OF somewhere.  
 	ofSetFrameRate(60);
@@ -35,8 +35,13 @@ void testApp::setup(){
 	ofDisableSetupScreen();
 	setupProjection();
 	
-	turnLeft = box2( ofPoint(0,0), ofPoint(150,200) );
-	turnRight = box2( ofPoint(w-150,0), ofPoint(150,200) );
+	int areaW = 100;
+	int areaH = 200;
+	turnLeft = box2( ofPoint(0,0), ofPoint(areaW,areaH) );
+	turnRight = box2( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
+	
+	for (int i=0; i< MAX_TOUCHES; i++)
+		touches[i] = NULL;
 }
 
 
@@ -59,8 +64,18 @@ void testApp::update(){
 	
 	speed *= 0.95;
 	
+	//bounds
 	if (car.y > h)
 		car.y = 0;
+	else
+	if (car.y < 0)
+		car.y = h;
+	else
+	if (car.x > w)
+		car.x = 0;
+	else
+	if (car.x < 0)
+		car.x = w;
 }
 
 	
@@ -80,13 +95,24 @@ void testApp::draw(){
 	glPushMatrix();
 		glTranslatef( car.x, car.y,0);
 		glRotatef(turn, 0,0,1);
-		int carW = 30;
-		int carH = 70;
+		int carW = 15;
+		int carH = 35;
 
 		ofRect( -carW * 0.5, -carH * 0.5, carW, carH);
 	glPopMatrix();
-	
-	ofRect(0,0, 5,5);
+
+
+	for (int i = 0; i< 3; i++){
+		if ( touches[i] == NULL )
+			ofSetColor(50,50,50);
+		if ( touches[i] == &turnLeft )
+			ofSetColor(0,255,0);
+		if ( touches[i] == &turnRight )
+			ofSetColor(0,0,255);
+		int ww = 30;
+		ofRect(i*ww, h-ww, ww-2, ww-2);
+	}
+
 }
 
 
@@ -119,49 +145,63 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::touchDown(float x, float y, int touchId, ofxMultiTouchCustomData *data){
+
 	ofPoint t = convertCoordinates(x,y);
 	printf("touch %i down at (%d,%d)\n", touchId, (int)t.x, (int)t.y);
-	handleClick(t);
+
+	if ( turnLeft.enableIfContains( t ) ){
+		printf( "left active(%f,%f)\n", turnLeft.xAxis(), turnLeft.yAxis() );
+		touches[touchId] = &turnLeft;
+	}else {
+		printf("no left\n");
+	}
+
+
+	if ( turnRight.enableIfContains( t ) ){
+		printf( "right active(%f,%f)\n", turnRight.xAxis(), turnRight.yAxis() );
+		touches[touchId] = &turnRight;
+	}else {
+		printf("no right\n");
+	}
 }
+
 
 //--------------------------------------------------------------
 void testApp::touchMoved(float x, float y, int touchId, ofxMultiTouchCustomData *data){
 	ofPoint t = convertCoordinates(x,y);
 	printf("touch %i moved at (%i,%i)\n", touchId, (int)t.x, (int)t.y);
-	handleClick(t);
+	
+	if ( touches[touchId] != NULL){
+		touches[touchId]->contains(t);
+	}else {
+		touchDown(x, y, touchId, data);
+	}
+
+		
 }
+
 
 //--------------------------------------------------------------
 void testApp::touchUp(float x, float y, int touchId, ofxMultiTouchCustomData *data){
 	ofPoint t = convertCoordinates(x,y);
 	printf("touch %i up at (%i,%i)\n", touchId, (int)t.x, (int)t.y);
-	//handleClick(t);
-	resetClicks(t);
+	
+	if ( touches[touchId] != NULL){
+		touches[touchId]->reset();
+		touches[touchId] = NULL;
+	}
+	
 }
+
 
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(float x, float y, int touchId, ofxMultiTouchCustomData *data){
 	ofPoint t = convertCoordinates(x,y);
 	//printf("touch %i double tap at (%i,%i)\n", touchId, (int)t.x, (int)t.y);
-	handleClick(t);
-}
-
-void testApp::resetClicks(ofPoint c){
-	turnLeft.disableIfContains(c);
-	turnRight.disableIfContains(c);
 }
 
 
-void testApp::handleClick( ofPoint c ){
 
-	if ( turnLeft.enableIfContains( c ) ){
-		printf( "left active(%f,%f)\n", turnLeft.xAxis(), turnLeft.yAxis() );
-	}
-
-	if ( turnRight.enableIfContains( c ) ){
-		printf( "right active(%f,%f)\n", turnRight.xAxis(), turnRight.yAxis() );
-	}
-}
 
 void testApp::setupProjection(){
 

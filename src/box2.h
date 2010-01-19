@@ -20,10 +20,12 @@ class box2{
 		box2( ofPoint origin, ofPoint size );
 		~box2(){};
 
-		bool enableIfContains(ofPoint);	//call contains first
+		bool enableIfContains(ofPoint);		/// only sets active if inside, doesnt disactivate if outside
+		bool contains(ofPoint);				/// set state depending on test results
+		
 		float xAxis();			//then you can query where the hit was % wise
 		float yAxis();
-		void disableIfContains(ofPoint);	//call contains first
+		
 
 		void reset(){active=false;}
 		void draw();

@@ -6,6 +6,7 @@
 #include "ofxMultiTouch.h"
 #include "box2.h"
 
+#define MAX_TOUCHES					999
 
 class testApp : public ofSimpleApp, public ofxMultiTouchListener {
 	
@@ -16,8 +17,6 @@ public:
 	void exit();
 	
 	void setupProjection();
-	void handleClick( ofPoint c );
-	void resetClicks( ofPoint c );
 	
 	void keyPressed(int key) {}
 	void keyReleased(int key)  {}
@@ -36,9 +35,10 @@ public:
 	float turn;
 	float speed;
 	
-	ofPoint	car;
-	box2	turnLeft;
-	box2	turnRight;
+	ofPoint			car;
+	box2			turnLeft;
+	box2			turnRight;
+	box2*			touches[MAX_TOUCHES];	
 	
 };
 
