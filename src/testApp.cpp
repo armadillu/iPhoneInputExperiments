@@ -49,13 +49,13 @@ void testApp::setup(){
 void testApp::update(){
 
 	if (turnLeft.isActive()){
-		turn += 1.0;
-		speed += turnLeft.yAxis();
+		turn += turnLeft.xAxis();
+		speed += 0.5 * turnLeft.yAxis();
 	}
 
 	if (turnRight.isActive()){
-		turn -= 1.0;
-		speed += turnRight.yAxis();
+		turn -= (1.0-turnRight.xAxis());
+		speed += 0.5 * turnRight.yAxis();
 	}
 	
 	//update car
@@ -156,7 +156,6 @@ void testApp::touchDown(float x, float y, int touchId, ofxMultiTouchCustomData *
 		printf("no left\n");
 	}
 
-
 	if ( turnRight.enableIfContains( t ) ){
 		printf( "right active(%f,%f)\n", turnRight.xAxis(), turnRight.yAxis() );
 		touches[touchId] = &turnRight;
@@ -176,8 +175,6 @@ void testApp::touchMoved(float x, float y, int touchId, ofxMultiTouchCustomData 
 	}else {
 		touchDown(x, y, touchId, data);
 	}
-
-		
 }
 
 
@@ -190,7 +187,6 @@ void testApp::touchUp(float x, float y, int touchId, ofxMultiTouchCustomData *da
 		touches[touchId]->reset();
 		touches[touchId] = NULL;
 	}
-	
 }
 
 
@@ -199,8 +195,6 @@ void testApp::touchDoubleTap(float x, float y, int touchId, ofxMultiTouchCustomD
 	ofPoint t = convertCoordinates(x,y);
 	//printf("touch %i double tap at (%i,%i)\n", touchId, (int)t.x, (int)t.y);
 }
-
-
 
 
 void testApp::setupProjection(){
