@@ -35,11 +35,16 @@ void testApp::setup(){
 	ofDisableSetupScreen();
 	setupProjection();
 	
-	int areaW = 100;
-	int areaH = 200;
-	turnLeft = box2( ofPoint(0,0), ofPoint(areaW,areaH) );
-	turnRight = box2( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
-	
+	//this controls wheel (horizontal axis), so needs to be wide and not tall
+	int areaW = 200;
+	int areaH = 40;
+	leftSensor = box2( ofPoint(0,0), ofPoint(areaW,areaH) );
+
+	//this controls speed (vertical axis), so needs to be thin and tall
+	areaW = 40;
+	areaH = h;
+	rightSensor = box2( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
+
 	for (int i=0; i< MAX_TOUCHES; i++)
 		touches[i] = NULL;
 }
@@ -48,14 +53,16 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 
-	if (turnLeft.isActive()){
-		turn += turnLeft.xAxis();
-		speed += 0.5 * turnLeft.yAxis();
+	if (leftSensor.isActive()){	//left sensor is direction
+		float where = leftSensor.xAxis();
+		where -= 0.5f;	//middle of sensor "neutral" zone. go straight. Press on either side to turn
+		turn = -3 * where;
 	}
 
-	if (turnRight.isActive()){
-		turn -= (1.0-turnRight.xAxis());
-		speed += 0.5 * turnRight.yAxis();
+	if (rightSensor.isActive()){	//right sensor is speed
+		float where = rightSensor.yAxis();
+		where -= 0.2;		//20% above bottom is "neutral" zone. Go below to reverse, go above to go forward
+		speed += 0.5 * where;
 	}
 	
 	//update car
@@ -87,8 +94,9 @@ void testApp::draw(){
 	glTranslatef(0, ofGetHeight(),0);
 	glRotatef( -90  , 0,0,1);
 	
-	turnLeft.draw();
-	turnRight.draw();
+	leftSensor.draw();
+	rightSensor.draw();
+	
 
 	ofSetColor(0x777777);
 	
@@ -105,9 +113,9 @@ void testApp::draw(){
 	for (int i = 0; i< 3; i++){
 		if ( touches[i] == NULL )
 			ofSetColor(50,50,50);
-		if ( touches[i] == &turnLeft )
+		if ( touches[i] == &leftSensor )
 			ofSetColor(0,255,0);
-		if ( touches[i] == &turnRight )
+		if ( touches[i] == &rightSensor )
 			ofSetColor(0,0,255);
 		int ww = 30;
 		ofRect(i*ww, h-ww, ww-2, ww-2);
@@ -149,16 +157,16 @@ void testApp::touchDown(float x, float y, int touchId, ofxMultiTouchCustomData *
 	ofPoint t = convertCoordinates(x,y);
 	printf("touch %i down at (%d,%d)\n", touchId, (int)t.x, (int)t.y);
 
-	if ( turnLeft.enableIfContains( t ) ){
-		printf( "left active(%f,%f)\n", turnLeft.xAxis(), turnLeft.yAxis() );
-		touches[touchId] = &turnLeft;
+	if ( leftSensor.enableIfContains( t ) ){
+		printf( "left active(%f,%f)\n", leftSensor.xAxis(), leftSensor.yAxis() );
+		touches[touchId] = &leftSensor;
 	}else {
 		printf("no left\n");
 	}
 
-	if ( turnRight.enableIfContains( t ) ){
-		printf( "right active(%f,%f)\n", turnRight.xAxis(), turnRight.yAxis() );
-		touches[touchId] = &turnRight;
+	if ( rightSensor.enableIfContains( t ) ){
+		printf( "right active(%f,%f)\n", rightSensor.xAxis(), rightSensor.yAxis() );
+		touches[touchId] = &rightSensor;
 	}else {
 		printf("no right\n");
 	}

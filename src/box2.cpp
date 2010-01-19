@@ -84,4 +84,11 @@ void box2::draw(){
 	else
 		ofSetColor(255,255,255);
 	ofRect(pmin.x, pmin.y, size.x, size.y);
+	
+	if (!active)
+		return;
+	
+	ofSetColor(0,0,0);
+	ofRect(lastPoint.x, pmin.y, 1, size.y);
+	ofRect(pmin.x, lastPoint.y, size.x, 1);
 }

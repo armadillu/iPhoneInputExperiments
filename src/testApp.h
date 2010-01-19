@@ -36,8 +36,8 @@ public:
 	float speed;
 	
 	ofPoint			car;
-	box2			turnLeft;
-	box2			turnRight;
+	box2			leftSensor;
+	box2			rightSensor;
 	box2*			touches[MAX_TOUCHES];	
 	
 };
