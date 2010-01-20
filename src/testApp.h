@@ -5,6 +5,8 @@
 #include "ofxAccelerometer.h"
 #include "ofxMultiTouch.h"
 #include "box2.h"
+#include "engineControlBox.h"
+#include "wheelControlBox.h"
 
 #define MAX_TOUCHES					999
 
@@ -35,10 +37,10 @@ public:
 	float turn;
 	float speed;
 	
-	ofPoint			car;
-	box2			leftSensor;
-	box2			rightSensor;
-	box2*			touches[MAX_TOUCHES];	
+	ofPoint				car;
+	wheelControlBox		leftSensor;
+	engineControlBox	rightSensor;
+	box2*				touches[MAX_TOUCHES];	
 	
 };
 

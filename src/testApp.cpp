@@ -38,12 +38,12 @@ void testApp::setup(){
 	//this controls wheel (horizontal axis), so needs to be wide and not tall
 	int areaW = 160;
 	int areaH = 70;
-	leftSensor = box2( ofPoint(0,0), ofPoint(areaW,areaH) );
+	leftSensor = wheelControlBox( ofPoint(0,0), ofPoint(areaW,areaH) );
 
 	//this controls speed (vertical axis), so needs to be thin and tall
 	areaW = 40;
 	areaH = h;
-	rightSensor = box2( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
+	rightSensor = engineControlBox( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
 
 	for (int i=0; i< MAX_TOUCHES; i++)
 		touches[i] = NULL;
@@ -117,7 +117,7 @@ void testApp::draw(){
 			ofSetColor(0,255,0);
 		if ( touches[i] == &rightSensor )
 			ofSetColor(0,0,255);
-		int ww = 30;
+		int ww = 8;
 		ofRect(i*ww, h-ww, ww-2, ww-2);
 	}
 

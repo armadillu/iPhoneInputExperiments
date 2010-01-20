@@ -30,6 +30,8 @@
 		BB4B3E550F7AFE100030C0C6 /* ofxiPhoneUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E260F7AFE100030C0C6 /* ofxiPhoneUtils.mm */; };
 		BB4B3E580F7AFE100030C0C6 /* ofxMultiTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E2B0F7AFE100030C0C6 /* ofxMultiTouch.cpp */; };
 		BB4B3E5B0F7AFE100030C0C6 /* ofxAccelerometer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB4B3E320F7AFE100030C0C6 /* ofxAccelerometer.cpp */; };
+		BB6C83BA11067F9B0056766F /* engineControlBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB6C83B911067F9B0056766F /* engineControlBox.cpp */; };
+		BB6C8465110684770056766F /* wheelControlBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB6C8463110684770056766F /* wheelControlBox.cpp */; };
 		BB73D3DB0F4B08B60092FC06 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB73D3DA0F4B08B60092FC06 /* testApp.cpp */; };
 		BB91E5520F4085C900AD1FB1 /* ofTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB16E9AD0F2B1E6900518274 /* ofTexture.cpp */; };
 		BBD1C2780F39143F007FCFB3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BBD1C2760F39143F007FCFB3 /* Default.png */; };
@@ -128,6 +130,10 @@
 		BB4B3E300F7AFE100030C0C6 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BB4B3E320F7AFE100030C0C6 /* ofxAccelerometer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAccelerometer.cpp; sourceTree = "<group>"; };
 		BB4B3E330F7AFE100030C0C6 /* ofxAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxAccelerometer.h; sourceTree = "<group>"; };
+		BB6C83B811067F9B0056766F /* engineControlBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engineControlBox.h; sourceTree = "<group>"; };
+		BB6C83B911067F9B0056766F /* engineControlBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = engineControlBox.cpp; sourceTree = "<group>"; };
+		BB6C8463110684770056766F /* wheelControlBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wheelControlBox.cpp; sourceTree = "<group>"; };
+		BB6C8464110684770056766F /* wheelControlBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wheelControlBox.h; sourceTree = "<group>"; };
 		BB73D3DA0F4B08B60092FC06 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		BBD1C2760F39143F007FCFB3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BBD1C2770F39143F007FCFB3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -415,6 +421,10 @@
 		BB16F3A50F2B73B000518274 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				BB6C8463110684770056766F /* wheelControlBox.cpp */,
+				BB6C8464110684770056766F /* wheelControlBox.h */,
+				BB6C83B811067F9B0056766F /* engineControlBox.h */,
+				BB6C83B911067F9B0056766F /* engineControlBox.cpp */,
 				BB05CC6E11052848002F2C2F /* box2.h */,
 				BB05CC6F11052848002F2C2F /* box2.cpp */,
 				BB16F3AA0F2B73B000518274 /* testApp.h */,
@@ -791,6 +801,8 @@
 				BB4B3E5B0F7AFE100030C0C6 /* ofxAccelerometer.cpp in Sources */,
 				BB05CB3E1104F592002F2C2F /* iphoneScreenInput.cpp in Sources */,
 				BB05CC7011052848002F2C2F /* box2.cpp in Sources */,
+				BB6C83BA11067F9B0056766F /* engineControlBox.cpp in Sources */,
+				BB6C8465110684770056766F /* wheelControlBox.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
