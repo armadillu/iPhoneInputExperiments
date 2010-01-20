@@ -11,7 +11,7 @@ ofPoint convertCoordinates(float x, float y){
 //--------------------------------------------------------------
 void testApp::setup(){	
 	
-	ofBackground(20, 20, 20);
+	ofBackground(60, 60, 60);
 	ofSetBackgroundAuto(true);
 	glEnableClientState( GL_VERTEX_ARRAY );  // this should be in OF somewhere.  
 	ofSetFrameRate(60);
@@ -112,7 +112,7 @@ void testApp::draw(){
 
 	for (int i = 0; i< 3; i++){
 		if ( touches[i] == NULL )
-			ofSetColor(50,50,50);
+			ofSetColor(0,0,0);
 		if ( touches[i] == &leftSensor )
 			ofSetColor(0,255,0);
 		if ( touches[i] == &rightSensor )
