@@ -36,8 +36,8 @@ void testApp::setup(){
 	setupProjection();
 	
 	//this controls wheel (horizontal axis), so needs to be wide and not tall
-	int areaW = 200;
-	int areaH = 40;
+	int areaW = 160;
+	int areaH = 70;
 	leftSensor = box2( ofPoint(0,0), ofPoint(areaW,areaH) );
 
 	//this controls speed (vertical axis), so needs to be thin and tall
@@ -56,7 +56,7 @@ void testApp::update(){
 	if (leftSensor.isActive()){	//left sensor is direction
 		float where = leftSensor.xAxis();
 		where -= 0.5f;	//middle of sensor "neutral" zone. go straight. Press on either side to turn
-		turn = -3 * where;
+		turn -= 5. * where;
 	}
 
 	if (rightSensor.isActive()){	//right sensor is speed
