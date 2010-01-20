@@ -1,1 +1,2 @@
-add non-linear behavior to boxes, especially wheel. should have quite a big "dead zone" in the middle
+- add non-linear behavior to boxes, especially wheel. should have quite a big "dead zone" in the middle
+- its really hard to control the car!!
