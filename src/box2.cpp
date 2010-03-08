@@ -32,31 +32,33 @@ box2::box2( ofPoint origin, ofPoint size_ ){
 bool box2::enableIfContains( ofPoint p){
 	
 	bool testResult = false;
-	lastPoint = p;
 	if ( 
 		( p.x >= pmin.x && p.x <= pmax.x ) 
 		&&
 		( p.y >= pmin.y && p.y <= pmax.y ) 
 		){
-		testResult = true;
-		active = true;
+		
+			testResult = true;
+			active = true;
+			lastPoint = p;
 	}
 	return testResult;
 }
 
 bool box2::contains( ofPoint p){
 	
-	lastPoint = p;
 	if ( 
 		( p.x >= pmin.x && p.x <= pmax.x ) 
 		&&
 		( p.y >= pmin.y && p.y <= pmax.y ) 
 		){
-		active = true;
+		
+			active = true;
+			lastPoint = p;
+		
 	}else {
 		active = false;
 	}
-
 	return active;
 }
 

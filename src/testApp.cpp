@@ -41,10 +41,14 @@ void testApp::setup(){
 	leftSensor = wheelControlBox( ofPoint(0,0), ofPoint(areaW,areaH) );
 
 	//this controls speed (vertical axis), so needs to be thin and tall
-	areaW = 40;
-	areaH = h;
-	rightSensor = engineControlBox( ofPoint(w-areaW,0), ofPoint(areaW,areaH) );
+	areaH = 60;
+	areaW = 90;
 
+	
+
+	gas = box2( ofPoint( w - areaW, 0), ofPoint(areaW,areaH));
+	brakes = box2( ofPoint( w - areaW, areaH * 1.5f), ofPoint(areaW,areaH));
+	
 	for (int i=0; i< MAX_TOUCHES; i++)
 		touches[i] = NULL;
 }
@@ -53,23 +57,29 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 
-	if (leftSensor.isActive()){	//left sensor is direction
+	if ( leftSensor.isActive() ){	//left sensor is direction
 		float where = leftSensor.xAxis();
 		where -= 0.5f;	//middle of sensor "neutral" zone. go straight. Press on either side to turn
 		turn -= 5. * where;
 	}
 
-	if (rightSensor.isActive()){	//right sensor is speed
-		float where = rightSensor.yAxis();
-		where -= 0.2;		//20% above bottom is "neutral" zone. Go below to reverse, go above to go forward
-		speed += 0.5 * where;
+	if ( gas.isActive() ){
+		speed += 0.2;
 	}
+
+	if ( brakes.isActive() ){
+		speed *= 0.75;
+	}
+
 	
 	//update car
 	car.x = car.x + speed * cos( DEG_TO_RAD * (turn+90) );
 	car.y = car.y + speed * sin( DEG_TO_RAD * (turn+90) );	
 	
-	speed *= 0.95;
+	speed *= 0.97;
+	
+	if (speed > 15) 
+		speed = 15;
 	
 	//bounds
 	if (car.y > h)
@@ -95,9 +105,10 @@ void testApp::draw(){
 	glRotatef( -90  , 0,0,1);
 	
 	leftSensor.draw();
-	rightSensor.draw();
 	
-
+	gas.draw();
+	brakes.draw();
+	
 	ofSetColor(0x777777);
 	
 	glPushMatrix();
@@ -109,18 +120,17 @@ void testApp::draw(){
 		ofRect( -carW * 0.5, -carH * 0.5, carW, carH);
 	glPopMatrix();
 
-
+	
 	for (int i = 0; i< 3; i++){
 		if ( touches[i] == NULL )
 			ofSetColor(0,0,0);
 		if ( touches[i] == &leftSensor )
 			ofSetColor(0,255,0);
-		if ( touches[i] == &rightSensor )
-			ofSetColor(0,0,255);
+//		if ( touches[i] == &rightSensor )
+//			ofSetColor(0,0,255);
 		int ww = 8;
 		ofRect(i*ww, h-ww, ww-2, ww-2);
 	}
-
 }
 
 
@@ -164,24 +174,25 @@ void testApp::touchDown(float x, float y, int touchId, ofxMultiTouchCustomData *
 		printf("no left\n");
 	}
 
-	if ( rightSensor.enableIfContains( t ) ){
-		printf( "right active(%f,%f)\n", rightSensor.xAxis(), rightSensor.yAxis() );
-		touches[touchId] = &rightSensor;
-	}else {
-		printf("no right\n");
+	if ( gas.enableIfContains( t ) ){
+		touches[touchId] = &gas;
 	}
+	
+	if ( brakes.enableIfContains( t ) ){
+		touches[touchId] = &brakes;
+	}
+
 }
 
 
 //--------------------------------------------------------------
 void testApp::touchMoved(float x, float y, int touchId, ofxMultiTouchCustomData *data){
+	
 	ofPoint t = convertCoordinates(x,y);
 	printf("touch %i moved at (%i,%i)\n", touchId, (int)t.x, (int)t.y);
 	
 	if ( touches[touchId] != NULL){
 		touches[touchId]->contains(t);
-	}else {
-		touchDown(x, y, touchId, data);
 	}
 }
 

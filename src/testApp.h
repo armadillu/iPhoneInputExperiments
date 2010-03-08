@@ -39,7 +39,12 @@ public:
 	
 	ofPoint				car;
 	wheelControlBox		leftSensor;
-	engineControlBox	rightSensor;
+
+	//	engineControlBox	rightSensor;
+	box2				gas;
+	box2				brakes;
+	
+	
 	box2*				touches[MAX_TOUCHES];	
 	
 };
