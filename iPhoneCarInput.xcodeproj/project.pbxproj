@@ -43,6 +43,7 @@
 		BBE5E9F90F497D9200F28951 /* ofImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB16E9AB0F2B1E6900518274 /* ofImage.cpp */; };
 		BBE5E9FA0F497D9500F28951 /* ofTrueTypeFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB16E9AF0F2B1E6900518274 /* ofTrueTypeFont.cpp */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
+		BBED75AE11454223003DAC1D /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = BBED75AD11454223003DAC1D /* todo.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +228,7 @@
 		BBE5E9F30F497D5F00F28951 /* libGLU.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLU.a; sourceTree = "<group>"; };
 		BBE5E9F40F497D5F00F28951 /* libGLU_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLU_arm.a; sourceTree = "<group>"; };
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BBED75AD11454223003DAC1D /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BBED75AD11454223003DAC1D /* todo.txt */,
 				BB16F3A50F2B73B000518274 /* src */,
 				BBD1C2750F39143F007FCFB3 /* data */,
 				BB16F26B0F2B646B00518274 /* addons */,
@@ -769,6 +772,7 @@
 			files = (
 				BBD1C2780F39143F007FCFB3 /* Default.png in Resources */,
 				BBD1C2790F39143F007FCFB3 /* Icon.png in Resources */,
+				BBED75AE11454223003DAC1D /* todo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

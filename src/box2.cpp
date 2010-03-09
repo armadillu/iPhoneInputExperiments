@@ -82,9 +82,9 @@ float box2::yAxis(){
 
 void box2::draw(){
 	if (active)
-		ofSetColor(255,0,0);
+		ofSetColor(255,0,0, 60);
 	else
-		ofSetColor(255,255,255);
+		ofSetColor(255,255,255, 60);
 	ofRect(pmin.x, pmin.y, size.x, size.y);
 	
 	if (!active)

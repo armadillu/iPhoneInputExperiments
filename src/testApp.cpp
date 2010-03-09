@@ -16,6 +16,7 @@ void testApp::setup(){
 	glEnableClientState( GL_VERTEX_ARRAY );  // this should be in OF somewhere.  
 	ofSetFrameRate(60);
 	ofEnableSmoothing();
+	ofEnableAlphaBlending();
 	
 	// initialize the accelerometer
 	//ofxAccelerometer.setup();
@@ -43,11 +44,9 @@ void testApp::setup(){
 	//this controls speed (vertical axis), so needs to be thin and tall
 	areaH = 60;
 	areaW = 90;
-
 	
-
-	gas = box2( ofPoint( w - areaW, 0), ofPoint(areaW,areaH));
-	brakes = box2( ofPoint( w - areaW, areaH * 1.5f), ofPoint(areaW,areaH));
+	gas = box2( ofPoint( w - areaW, areaH * 1.5f), ofPoint(areaW,areaH));
+	brakes = box2( ofPoint( w - areaW, 0), ofPoint(areaW,areaH));
 	
 	for (int i=0; i< MAX_TOUCHES; i++)
 		touches[i] = NULL;
@@ -64,7 +63,7 @@ void testApp::update(){
 	}
 
 	if ( gas.isActive() ){
-		speed += 0.2;
+		speed += 0.2 * gas.yAxis();
 	}
 
 	if ( brakes.isActive() ){

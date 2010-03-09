@@ -38,13 +38,10 @@ public:
 	float speed;
 	
 	ofPoint				car;
-	wheelControlBox		leftSensor;
 
-	//	engineControlBox	rightSensor;
+	wheelControlBox		leftSensor;
 	box2				gas;
 	box2				brakes;
-	
-	
 	box2*				touches[MAX_TOUCHES];	
 	
 };
